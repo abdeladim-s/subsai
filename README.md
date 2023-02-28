@@ -37,6 +37,33 @@ Subtitles generation tool (Web-UI + CLI + Python package) powered by OpenAI's Wh
   * [x] TMP
 * Supports audio and video files
 # Installation 
+* Install [ffmpeg](https://ffmpeg.org/)
+
+_Quoted from the official openai/whisper installation_
+> It requires the command-line tool [`ffmpeg`](https://ffmpeg.org/) to be installed on your system, which is available from most package managers:
+> ```bash
+> # on Ubuntu or Debian
+> sudo apt update && sudo apt install ffmpeg
+>
+> # on Arch Linux
+>sudo pacman -S ffmpeg
+>
+> # on MacOS using Homebrew (https://brew.sh/)
+> brew install ffmpeg
+>
+> # on Windows using Chocolatey (https://chocolatey.org/)
+> choco install ffmpeg
+>
+> # on Windows using Scoop (https://scoop.sh/)
+> scoop install ffmpeg
+>```
+>You may need [`rust`](http://rust-lang.org) installed as well, in case [tokenizers](https://pypi.org/project/tokenizers/) does not provide a pre-built wheel for your platform. If you see installation errors during the `pip install` command above, please follow the [Getting started page](https://www.rust-lang.org/learn/get-started) to install Rust development environment. Additionally, you may need to configure the `PATH` environment variable, e.g. `export PATH="$HOME/.cargo/bin:$PATH"`. If the installation fails with `No module named 'setuptools_rust'`, you need to install `setuptools_rust`, e.g. by running:
+>```bash
+>pip install setuptools-rust
+>``` 
+
+* Once ffmpeg is installed, install `subsai`
+
 ```shell
 pip install subsai
 ```
@@ -48,7 +75,7 @@ To use the web UI, run the following command on the terminal
 subsai-webui
 ```
 
-And a web page will open on your default browser.
+And a web page will open on your default browser, otherwise navigate to the links provided by the command
 
 * CLI
 
@@ -84,7 +111,7 @@ options:
 
 ```
 
-Example of simple usage
+Example of a simple usage
 ```shell
 subsai ./assets/test1.mp4 --model openai/whisper --format srt
 ```
@@ -107,7 +134,7 @@ model = subs_ai.create_model('openai/whisper', {'model_type': 'base'})
 subs = subs_ai.transcribe(file, model)
 subs.save('test1.srt')
 ```
-Read the documentation for advanced usage.
+For more advanced usage, read the documentation.
 
 # Contributing
 If you find a bug, have a suggestion or feedback, please open an issue for discussion.
