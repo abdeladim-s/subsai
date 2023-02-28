@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "subsai"
+version = "1.0.0"
+description = "Subtitles generation tool powered by OpenAI's Whisper and its variants."
+authors = ["abdeladim-s <https://github.com/abdeladim-s>"]
+license = "LICENSE"
+readme = "README.md"
+
+[project.urls]
+"Homepage" = "https://github.com/abdeladim-s/subsai"
+"Bug Tracker" = "https://github.com/abdeladim-s/subsai/issues"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = ">=1.13.1,<1.14.0"
+openai-whisper = ">=20230124,<20230124.1"
+streamlit = ">=1.18.1,<1.19.0"
+streamlit-player = ">=0.1.5,<0.2.0"
+streamlit-aggrid = ">=0.3.3,<0.4.0"
+whisper-timestamped = {git = "https://github.com/linto-ai/whisper-timestamped"}
+importlib = ">=1.0.4,<1.1.0"
+pandas = ">=1.5.2,<1.6.0"
+pysubs2 = ">=1.6.0,<1.7.0"
+ffsubsync = ">=0.4.23,<0.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+subsai = 'subsai.cli:main'
+subsai-webui = 'subsai.webui:run'
