@@ -54,6 +54,8 @@ def _handle_media_file(media_file_arg: list[str]):
             with open(file, 'r') as f:
                 lines = f.readlines()
                 for line in lines:
+                    if line == '':
+                        continue
                     res.append(pathlib.Path(line).absolute())
         else:
             res.append(pathlib.Path(file).absolute())
