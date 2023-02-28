@@ -140,9 +140,9 @@ For more advanced usage, read the documentation.
 # Notes
 * If you have an NVIDIA graphics card, you may need to install [cuda](https://docs.nvidia.com/cuda/#installation-guides) to use the GPU capabilities.
 * If you don't like dark mode of the web UI, you can switch to light mode from `settings > Theme > Light`.
+
 # Contributing
 If you find a bug, have a suggestion or feedback, please open an issue for discussion.
-
 
 # License
 
