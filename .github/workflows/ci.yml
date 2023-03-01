@@ -20,4 +20,5 @@ jobs:
           path: .cache
       - run: pip install mkdocs-macros-plugin
       - run: pip install mkdocs-material
+      - run: pip install mkdocstrings[python]
       - run: mkdocs gh-deploy --force
