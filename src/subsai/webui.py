@@ -3,16 +3,6 @@
 
 """
 Subs AI Web User Interface (webui)
-
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 import importlib
@@ -349,18 +339,7 @@ def webui() -> None:
             submit = st.button('Shift')
             if submit:
                 subs.shift(h, m, s, ms, frames=None if frames == 0 else frames, fps=None if fps == 0 else fps)
-                # subs[0].end = make_time(h, m, s, ms)
                 st.session_state['transcribed_subs'] = subs
-
-            # shift_config = get_config_from_session_state(advanced_tool, config_schema, notification_placeholder)
-            # submitted = st.button("shift")
-            # if submitted:
-            #     with st.spinner("Processing (This may take a while) ..."):
-            #         subs = st.session_state['transcribed_subs']
-            #         subs.shift(**shift_config)
-            #         st.session_state['original_subs'] = st.session_state['transcribed_subs']
-            #         st.session_state['transcribed_subs'] = subs
-            #     notification_placeholder.success('Success!', icon="✅")
         advanced_tool = st.selectbox('Advanced tools', options=['', *list(ADVANCED_TOOLS_CONFIGS.keys())],
                                      help='some post processing tools')
         if advanced_tool == 'Translation':

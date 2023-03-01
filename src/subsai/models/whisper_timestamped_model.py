@@ -1,17 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" Short description of this Python module.
-Longer description of this module.
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <http://www.gnu.org/licenses/>.
+"""
+whisper_timestamped
+
+See [linto-ai/whisper-timestamped](https://github.com/linto-ai/whisper-timestamped)
 """
 
 from typing import Tuple
@@ -24,7 +17,7 @@ from subsai.utils import _load_config, get_available_devices
 
 
 class WhisperTimeStamped(AbstractModel):
-    model_name = 'openai/whisper'
+    model_name = 'linto-ai/whisper-timestamped'
     config_schema = {
         # load model config
         'model_type': {
@@ -254,17 +247,3 @@ class WhisperTimeStamped(AbstractModel):
                 event.plaintext = word["text"].strip()
                 subs.append(event)
         return subs
-
-
-if __name__ == '__main__':
-    file = '/home/su/code/subsai/tests/video/test1.mp4'
-    model = WhisperTimeStamped(file)
-    subs = model.transcribe()
-    # for segment in subs['segments']:
-    #     print(segment['words'])
-    # print(segment["words"])
-    # print(subs['segments'])
-    for sub in subs:
-        print(sub)
-    subs.save('test1-words.srt')
-    # print(whisper_timestamped.available_models())

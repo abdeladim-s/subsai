@@ -1,0 +1,77 @@
+site_name: Subtitles AI API Reference
+repo_url: https://github.com/abdeladim-s/subsai
+repo_name: abdeladim-s/subsai
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/abdeladim-s/subsai
+
+markdown_extensions:
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: true
+
+copyright: |
+  &copy; 2023 <a href="https://github.com/abdeladim-s"  target="_blank" rel="noopener">abdeladim-s</a>
+
+plugins:
+  - search
+  - macros:
+      include_dir: .
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src/subsai]
+          options:
+            separate_signature: true
+            docstring_style: sphinx
+            docstring_section_style: list
+            members_order: source
+            merge_init_into_class: true
+            show_bases: true
+            show_if_no_docstring: false
+            show_root_full_path: true
+            show_root_heading: true
+            show_submodules: true
+            filters:
+              - "!^_"
+      watch:
+        - src/subsai
+

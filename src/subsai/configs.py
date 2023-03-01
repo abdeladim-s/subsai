@@ -2,17 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Configuration file
-
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with
-this program. If not, see <https://www.gnu.org/licenses/>.
+Configurations file
 """
 
 from ffsubsync.constants import DEFAULT_MAX_SUBTITLE_SECONDS, DEFAULT_START_SECONDS, DEFAULT_MAX_OFFSET_SECONDS, \
@@ -22,7 +12,7 @@ from subsai.models.whisper_model import WhisperModel
 from subsai.models.whisper_timestamped_model import WhisperTimeStamped
 from subsai.utils import get_available_devices, available_translation_models
 
-AVAILABLE_STT_MODELS_LIBS = {
+AVAILABLE_MODELS = {
     'openai/whisper': {
         'class': WhisperModel,
         'description': 'Whisper is a general-purpose speech recognition model. It is trained on a large dataset of '

@@ -5,7 +5,6 @@
 SubsAI: Subtitles AI
 Subtitles generation tool powered by OpenAI's Whisper and its variants.
 
-Longer description of this module.
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
@@ -25,7 +24,7 @@ from typing import Union
 import pysubs2
 from dl_translate import TranslationModel
 from pysubs2 import SSAFile
-from subsai.configs import AVAILABLE_STT_MODELS_LIBS
+from subsai.configs import AVAILABLE_MODELS
 from subsai.models.abstract_model import AbstractModel
 from ffsubsync.ffsubsync import run, make_parser
 from subsai.utils import available_translation_models
@@ -41,32 +40,24 @@ class SubsAI:
     """
     Subs AI class
 
-    Ex:
-    .. code-block:: python
-    :linenos:
-
+    Example usage:
+    ```python
     file = './assets/test1.mp4'
     subs_ai = SubsAI()
     model = subs_ai.create_model('openai/whisper', {'model_type': 'base'})
     subs = subs_ai.transcribe(file, model)
     subs.save('test1.srt')
-
+    ```
     """
 
-    def __init__(self):
-        """
-        Constructor
-        """
-        pass
-
     @staticmethod
-    def available_models():
+    def available_models() -> list:
         """
-        Returns which models are supported
+        Returns the models supported
 
         :return: list of available models
         """
-        return list(AVAILABLE_STT_MODELS_LIBS.keys())
+        return list(AVAILABLE_MODELS.keys())
 
     @staticmethod
     def model_info(model: str) -> dict:
@@ -77,8 +68,8 @@ class SubsAI:
 
         :return: dict of infos
         """
-        return {'description': AVAILABLE_STT_MODELS_LIBS[model]['description'],
-                'url': AVAILABLE_STT_MODELS_LIBS[model]['url']}
+        return {'description': AVAILABLE_MODELS[model]['description'],
+                'url': AVAILABLE_MODELS[model]['url']}
 
     @staticmethod
     def config_schema(model: str) -> dict:
@@ -89,7 +80,7 @@ class SubsAI:
 
         :return: dict of configs
         """
-        return AVAILABLE_STT_MODELS_LIBS[model]['config_schema']
+        return AVAILABLE_MODELS[model]['config_schema']
 
     @staticmethod
     def create_model(model_name: str, model_config: dict = {}) -> AbstractModel:
@@ -101,7 +92,7 @@ class SubsAI:
 
         :return: the model instance
         """
-        return AVAILABLE_STT_MODELS_LIBS[model_name]['class'](model_config)
+        return AVAILABLE_MODELS[model_name]['class'](model_config)
 
     @staticmethod
     def transcribe(media_file: str, model: Union[AbstractModel, str], model_config: dict = {}) -> SSAFile:

@@ -1,5 +1,5 @@
 # Subs AI
-🎞️ Subtitles generation tool (Web-UI + CLI + Python package) powered by OpenAI's Whisper and its variants 🎞️
+️🎞 Subtitles generation tool (Web-UI + CLI + Python package) powered by OpenAI's Whisper and its variants 🎞️
 <br/>
 <p align="center">
   <img src="./assets/demo/demo.gif">
