@@ -134,7 +134,7 @@ model = subs_ai.create_model('openai/whisper', {'model_type': 'base'})
 subs = subs_ai.transcribe(file, model)
 subs.save('test1.srt')
 ```
-For more advanced usage, read the documentation.
+For more advanced usage, read [the documentation](https://abdeladim-s.github.io/subsai/).
 
 # Notes
 * If you have an NVIDIA graphics card, you may need to install [cuda](https://docs.nvidia.com/cuda/#installation-guides) to use the GPU capabilities.
