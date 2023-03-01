@@ -58,7 +58,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: [src/subsai]
+          paths: [src]
           options:
             separate_signature: true
             docstring_style: sphinx
