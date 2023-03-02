@@ -26,7 +26,7 @@
 * Command Line Interface
   * For simple or batch processing
 * Python package
-  * Easy API in case you want to develop your own UI
+  * In case you want to develop your own scripts
 * Supports different subtitles formats thanks to [tkarabela/pysubs2](https://github.com/tkarabela/pysubs2/)
   * [x] SubRip
   * [x] WebVTT
@@ -68,7 +68,7 @@ _Quoted from the official openai/whisper installation_
 pip install git+https://github.com/abdeladim-s/subsai
 ```
 # Usage
-* Web UI
+### Web UI
 
 To use the web UI, run the following command on the terminal
 ```shell
@@ -77,7 +77,7 @@ subsai-webui
 
 And a web page will open on your default browser, otherwise navigate to the links provided by the command
 
-* CLI
+### CLI
 
 ```shell
 usage: subsai [-h] [--version] [-m MODEL] [-mc MODEL_CONFIGS] [-f FORMAT] [-df DESTINATION_FOLDER] [-tm TRANSLATION_MODEL]
@@ -123,7 +123,7 @@ _(Every line should contain the absolute path to a single media file)_
 subsai /home/user/media.txt --model openai/whisper --format srt
 ```
 
-* From Python
+### From Python
 
 ```python
 from subsai import SubsAI
