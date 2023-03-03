@@ -14,7 +14,7 @@
 * Web UI
   * Fully offline, no third party services 
   * Works on Linux, Mac and Windows
-  * Intuitive and easy to use
+  * Lightweight and easy to use
   * Supports subtitle modification
   * Integrated tools:
     * Translation using [xhluca/dl-translate](https://github.com/xhluca/dl-translate):
