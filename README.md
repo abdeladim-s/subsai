@@ -8,7 +8,9 @@
 # Features
 * Supported Models
   * [x] [openai/whisper](https://github.com/openai/whisper)
+    * > Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification.
   * [x] [linto-ai/whisper-timestamped](https://github.com/linto-ai/whisper-timestamped)
+    * > Multilingual Automatic Speech Recognition with word-level timestamps and confidence
   * [ ] [ggerganov/whisper.cpp](https://github.com/ggerganov/whisper.cpp) (Soon)
   
 * Web UI
@@ -27,7 +29,7 @@
   * For simple or batch processing
 * Python package
   * In case you want to develop your own scripts
-* Supports different subtitles formats thanks to [tkarabela/pysubs2](https://github.com/tkarabela/pysubs2/)
+* Supports different subtitle formats thanks to [tkarabela/pysubs2](https://github.com/tkarabela/pysubs2/)
   * [x] SubRip
   * [x] WebVTT
   * [x] substation alpha
