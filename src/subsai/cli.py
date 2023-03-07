@@ -53,6 +53,8 @@ def _handle_media_file(media_file_arg: list[str]):
 
 
 def _handle_model_configs(model_configs_arg: str):
+    if type (model_configs_arg) != str:
+        return model_configs_arg
     if model_configs_arg.endswith('.json'):
         with open(model_configs_arg, 'r') as file:
             data = file.read()
