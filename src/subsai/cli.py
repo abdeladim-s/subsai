@@ -53,8 +53,6 @@ def _handle_media_file(media_file_arg: list[str]):
 
 
 def _handle_model_configs(model_configs_arg: str):
-    if type (model_configs_arg) != str:
-        return model_configs_arg
     if model_configs_arg.endswith('.json'):
         with open(model_configs_arg, 'r') as file:
             data = file.read()
@@ -120,7 +118,7 @@ def main():
     parser.add_argument('--version', action='version', version=f'%(prog)s {__version__}')
     parser.add_argument('-m', '--model', default=SubsAI.available_models()[0],
                         help=f'The transcription AI models. Available models: {SubsAI.available_models()}')
-    parser.add_argument('-mc', '--model-configs', default={},
+    parser.add_argument('-mc', '--model-configs', default="{}",
                         help="JSON configuration (path to a json file or a direct "
                              "string)")
     parser.add_argument('-f', '--format', '--subtitles-format', default='srt',
