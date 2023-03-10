@@ -13,7 +13,6 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.8,<3.9.7 || >3.9.7,<4.0"
 torch = "^1.13.1"
-openai-whisper = "^20230124"
 streamlit = "^1.19.0"
 streamlit-player = "^0.1.5"
 streamlit-aggrid = "^0.3.4"
