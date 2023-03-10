@@ -52,7 +52,7 @@ def _handle_media_file(media_file_arg: list[str]):
     return res
 
 
-def _handle_model_configs(model_configs_arg: str):
+def _handle_configs(model_configs_arg: str):
     if model_configs_arg.endswith('.json'):
         with open(model_configs_arg, 'r') as file:
             data = file.read()
@@ -71,7 +71,7 @@ def run(media_file_arg: list[str],
         translation_target_lang,
         ):
     files = _handle_media_file(media_file_arg)
-    model_configs = _handle_model_configs(model_configs)
+    model_configs = _handle_configs(model_configs)
     print(f"[-] Model name: {model_name}")
     print(f"[-] Model configs: {'defaults' if model_configs == {} else model_configs}")
     print(f"---")
@@ -97,6 +97,7 @@ def run(media_file_arg: list[str],
                 print(f"[+] Creating translation model: {translation_model}")
                 tr_model = tools.create_translation_model(translation_model)
             print(f"[+] Translating from: {translation_source_lang} to {translation_target_lang}")
+            translation_configs = _handle_configs(translation_configs)
             subs = tools.translate(subs=subs,
                                    source_language=translation_source_lang,
                                    target_language=translation_target_lang,
@@ -130,13 +131,11 @@ def main():
     parser.add_argument('-tm', '--translation-model', default=None,
                         help=f"Translate subtitles using AI models, available "
                              f"models: {available_translation_models()}", )
-
-    parser.add_argument('-tc', '--translation-configs', default={},
-                        help="JSON configuration (path to a json file or a direct "
-                             "string)")
-
     parser.add_argument('-tsl', '--translation-source-lang', default=None, help="Source language of the subtitles")
     parser.add_argument('-ttl', '--translation-target-lang', default=None, help="Target language of the subtitles")
+    parser.add_argument('-tc', '--translation-configs', default="{}",
+                        help="JSON configuration (path to a json file or a direct "
+                             "string)")
 
     args = parser.parse_args()
 
