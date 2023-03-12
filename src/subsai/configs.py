@@ -10,6 +10,7 @@ from ffsubsync.constants import DEFAULT_MAX_SUBTITLE_SECONDS, DEFAULT_START_SECO
 
 from subsai.models.whisper_model import WhisperModel
 from subsai.models.whisper_timestamped_model import WhisperTimeStamped
+from subsai.models.whispercpp_model import WhisperCppModel
 from subsai.utils import get_available_devices, available_translation_models
 
 AVAILABLE_MODELS = {
@@ -26,7 +27,13 @@ AVAILABLE_MODELS = {
         'description': 'Multilingual Automatic Speech Recognition with word-level timestamps and confidence.',
         'url': 'https://github.com/linto-ai/whisper-timestamped',
         'config_schema': WhisperTimeStamped.config_schema,
-        }
+    },
+    'ggerganov/whisper.cpp': {
+        'class': WhisperCppModel,
+        'description': 'High-performance inference of OpenAI\'s Whisper automatic speech recognition (ASR) model',
+        'url': 'https://github.com/ggerganov/whisper.cpp\nhttps://github.com/abdeladim-s/pywhispercpp',
+        'config_schema': WhisperCppModel.config_schema,
+    }
 }
 
 BASIC_TOOLS_CONFIGS = {
