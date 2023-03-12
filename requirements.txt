@@ -1,8 +1,9 @@
 torch~=1.13.1
-streamlit==1.19.0
+streamlit==1.20.0
 streamlit_player~=0.1.5
-streamlit-aggrid==0.3.4
+streamlit-aggrid==0.3.4.post3
 ffsubsync~=0.4.23
 git+https://github.com/linto-ai/whisper-timestamped
 pandas~=1.5.2
 pysubs2~=1.6.0
+pywhispercpp~=1.0.3

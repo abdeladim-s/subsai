@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "subsai"
-version = "1.0.0"
+version = "1.0.1"
 description = "Subtitles generation tool powered by OpenAI's Whisper and its variants."
 authors = ["abdeladim-s"]
 license = "LICENSE"

@@ -30,9 +30,9 @@ AVAILABLE_MODELS = {
     },
     'ggerganov/whisper.cpp': {
         'class': WhisperCppModel,
-        'description': 'High-performance inference of OpenAI\'s Whisper automatic speech recognition (ASR) model'
-                       '* Plain C/C++ implementation without dependencies'
-                       '* Runs on the CPU',
+        'description': 'High-performance inference of OpenAI\'s Whisper automatic speech recognition (ASR) model\n'
+                       '* Plain C/C++ implementation without dependencies\n'
+                       '* Runs on the CPU\n',
         'url': 'https://github.com/ggerganov/whisper.cpp\nhttps://github.com/abdeladim-s/pywhispercpp',
         'config_schema': WhisperCppModel.config_schema,
     }
