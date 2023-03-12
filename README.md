@@ -11,7 +11,7 @@
     * > Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multi-task model that can perform multilingual speech recognition as well as speech translation and language identification.
   * [x] [linto-ai/whisper-timestamped](https://github.com/linto-ai/whisper-timestamped)
     * > Multilingual Automatic Speech Recognition with word-level timestamps and confidence
-  * [ ] [ggerganov/whisper.cpp](https://github.com/ggerganov/whisper.cpp) (using [ abdeladim-s/pywhispercpp](https://github.com/abdeladim-s/pywhispercpp))
+  * [x] [ggerganov/whisper.cpp](https://github.com/ggerganov/whisper.cpp) (using [ abdeladim-s/pywhispercpp](https://github.com/abdeladim-s/pywhispercpp))
     * > High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model
       > * Plain C/C++ implementation without dependencies
       > * Runs on the CPU
