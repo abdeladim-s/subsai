@@ -139,6 +139,14 @@ model = subs_ai.create_model('openai/whisper', {'model_type': 'base'})
 subs = subs_ai.transcribe(file, model)
 subs.save('test1.srt')
 ```
+
+A more advanced example can be found in [examples/subsai_vad.ipynp](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb) 
+to  process long audio files using [silero-vad](https://github.com/snakers4/silero-vad).
+
+<a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 For more advanced usage, read [the documentation](https://abdeladim-s.github.io/subsai/).
 
 # Notes
