@@ -7,3 +7,4 @@ git+https://github.com/linto-ai/whisper-timestamped
 pandas~=1.5.2
 pysubs2~=1.6.0
 pywhispercpp~=1.0.3
+openai-whisper
