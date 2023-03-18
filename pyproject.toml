@@ -5,7 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "subsai"
 version = "1.0.2"
-authors = ["abdeladim-s"]
+authors = [
+    {name = "abdeladim-s"},
+]
 description = "Subtitles generation tool powered by OpenAI's Whisper and its variants"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -13,7 +15,7 @@ keywords = ["subtitles", "openai", "whisper"]
 license = {text = "LICENSE"}
 
 
-dynamic = ["dependencies", "version"]
+dynamic = ["dependencies"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
