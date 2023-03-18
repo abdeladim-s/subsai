@@ -258,7 +258,7 @@ def webui() -> None:
         "variants.")
     st.sidebar.title("Settings")
     st.info(
-        "This an open source project and you are very welcome to **contribute** your awesome "
+        "This is an open source project and you are very welcome to **contribute** your awesome "
         "comments, questions, ideas through "
         "[discussions](https://github.com/abdeladim-s/subsai/discussions), "
         "[issues](https://github.com/abdeladim-s/subsai/issues) and "
