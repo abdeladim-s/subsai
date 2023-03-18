@@ -1,31 +1,28 @@
-[tool.poetry]
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
 name = "subsai"
-version = "1.0.1"
-description = "Subtitles generation tool powered by OpenAI's Whisper and its variants."
+version = "1.0.2"
 authors = ["abdeladim-s"]
-license = "LICENSE"
+description = "Subtitles generation tool powered by OpenAI's Whisper and its variants"
 readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["subtitles", "openai", "whisper"]
+license = {text = "LICENSE"}
+
+
+dynamic = ["dependencies", "version"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
 
 [project.urls]
 "Homepage" = "https://github.com/abdeladim-s/subsai"
 "Bug Tracker" = "https://github.com/abdeladim-s/subsai/issues"
 
-[tool.poetry.dependencies]
-python = ">=3.8,<3.9.7 || >3.9.7,<4.0"
-torch = "^1.13.1"
-streamlit = "^1.19.0"
-streamlit-player = "^0.1.5"
-streamlit-aggrid = "^0.3.4"
-whisper-timestamped = {git = "https://github.com/linto-ai/whisper-timestamped"}
-pandas = "^1.5.2"
-pysubs2 = "^1.6.0"
-ffsubsync = "^0.4.23"
 
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
+[project.scripts]
 subsai = 'subsai.cli:main'
 subsai-webui = 'subsai.webui:run'
