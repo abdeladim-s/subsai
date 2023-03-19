@@ -8,5 +8,5 @@ whisper-timestamped @ git+https://github.com/linto-ai/whisper-timestamped
 pandas~=1.5.2
 pysubs2~=1.6.0
 # pywhispercpp @ git+https://github.com/abdeladim-s/pywhispercpp
-pywhispercpp
+pywhispercpp~=1.0.3
 dl_translate
