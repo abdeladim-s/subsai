@@ -139,15 +139,19 @@ model = subs_ai.create_model('openai/whisper', {'model_type': 'base'})
 subs = subs_ai.transcribe(file, model)
 subs.save('test1.srt')
 ```
+For more advanced usage, read [the documentation](https://abdeladim-s.github.io/subsai/).
 
-A more advanced example can be found in [examples/subsai_vad.ipynp](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb) 
-to  process long audio files using [silero-vad](https://github.com/snakers4/silero-vad).
+### Examples 
+Simple examples can be found in the [examples](https://github.com/abdeladim-s/subsai/tree/main/examples) folder
 
+* [VAD example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb): process long audio files using [silero-vad](https://github.com/snakers4/silero-vad).
 <a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
-
-For more advanced usage, read [the documentation](https://abdeladim-s.github.io/subsai/).
+* [Translation example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb): translate an already existing subtitles file.
+<a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 # Notes
 * If you have an NVIDIA graphics card, you may need to install [cuda](https://docs.nvidia.com/cuda/#installation-guides) to use the GPU capabilities.

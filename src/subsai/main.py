@@ -134,14 +134,20 @@ class Tools:
         return available_translation_models()
 
     @staticmethod
-    def available_translation_languages(model) -> list:
+    def available_translation_languages(model: Union[str, TranslationModel]) -> list:
         """
         Returns the languages supported by the translation model
 
         :param model: the name of the model
         :return: list of available languages
         """
-        return model.available_languages()
+        if type(model) == str:
+            translation_model = Tools.create_translation_model(model)
+            langs = translation_model.available_languages()
+        else:
+            langs = model.available_languages()
+        del translation_model
+        return langs
 
     @staticmethod
     def create_translation_model(model_name: str = "m2m100") -> TranslationModel:
