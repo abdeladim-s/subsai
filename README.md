@@ -5,6 +5,19 @@
   <img src="./assets/demo/demo.gif">
 </p>
 
+<!-- TOC -->
+* [Features](#features)
+* [Installation](#installation)
+* [Usage](#usage)
+    * [Web UI](#web-ui)
+    * [CLI](#cli)
+    * [From Python](#from-python)
+    * [Examples](#examples)
+* [Notes](#notes)
+* [Contributing](#contributing)
+* [License](#license)
+<!-- TOC -->
+
 # Features
 * Supported Models
   * [x] [openai/whisper](https://github.com/openai/whisper)
@@ -148,7 +161,8 @@ Simple examples can be found in the [examples](https://github.com/abdeladim-s/su
 <a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
-* [Translation example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb): translate an already existing subtitles file.
+
+* [Translation example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb): translate an already existing subtitles file 
 <a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
