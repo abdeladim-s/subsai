@@ -161,8 +161,7 @@ Simple examples can be found in the [examples](https://github.com/abdeladim-s/su
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-* [Translation example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb): translate an already existing subtitles file 
-<a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb">
+* [Translation example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb): translate an already existing subtitles file. <a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
