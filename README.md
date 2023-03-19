@@ -157,8 +157,7 @@ For more advanced usage, read [the documentation](https://abdeladim-s.github.io/
 ### Examples 
 Simple examples can be found in the [examples](https://github.com/abdeladim-s/subsai/tree/main/examples) folder
 
-* [VAD example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb): process long audio files using [silero-vad](https://github.com/snakers4/silero-vad).
-<a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb">
+* [VAD example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb): process long audio files using [silero-vad](https://github.com/snakers4/silero-vad). <a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_vad.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
