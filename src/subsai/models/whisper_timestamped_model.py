@@ -28,6 +28,13 @@ class WhisperTimeStamped(AbstractModel):
             'options': whisper_timestamped.available_models(),
             'default': 'base'
         },
+        'segment_type': {
+            'type': list,
+            'description': "Whisper_timestamps gives the ability to have word-level timestamps, "
+                           "Choose here between sentence-level and word-level",
+            'options': ['Sentence', 'Word'],
+            'default': 'Sentence'
+        },
         'device': {
             'type': list,
             'description': "The PyTorch device to put the model into",
@@ -170,11 +177,11 @@ class WhisperTimeStamped(AbstractModel):
             'default': 0.04
         },
         'plot_word_alignment': {
-            'type': float,
-            'description': 'Minimum duration of a word, in seconds. If a word is shorter than this, timestamps will '
-                           'be adjusted.',
+            'type': bool,
+            'description': "Whether to plot the word alignment for each segment. matplotlib must be installed to use "
+                           "this option.",
             'options': None,
-            'default': 0.04
+            'default': False
         },
         'seed': {
             'type': int,
@@ -183,14 +190,29 @@ class WhisperTimeStamped(AbstractModel):
             'options': None,
             'default': 1234
         },
-        'naive_approach': {
+        'vad': {
             'type': bool,
-            'description': "Force the naive approach that consists in decoding twice the audio file, once to get the "
-                           "transcription and once with the decoded tokens to get the alignment. "
-                           "Note that this approach is used anyway when beam_size is not None and/or when the "
-                           "temperature is a list with more than one element.",
+            'description': "Whether to perform voice activity detection (VAD) on the audio file, to remove silent "
+                           "parts before transcribing with Whisper model. "
+                           "This should decrease hallucinations from the Whisper model.",
             'options': None,
             'default': False
+        },
+        'detect_disfluencies': {
+            'type': bool,
+            'description': 'Whether to detect disfluencies (i.e. hesitations, filler words, repetitions, corrections, '
+                           'etc.) that Whisper model might have omitted in the transcription. '
+                           'This should make the word timestamp prediction more accurate.'
+                           'And probable disfluencies will be marked as special words "[*]"',
+            'options': None,
+            'default': False
+        },
+        'trust_whisper_timestamps': {
+            'type': bool,
+            'description': 'Whether to rely on Whisper\'s timestamps to get approximative first estimate of segment '
+                           'positions (up to refine_whisper_precision).',
+            'options': None,
+            'default': True
         },
         'naive_approach': {
             'type': bool,
@@ -204,11 +226,12 @@ class WhisperTimeStamped(AbstractModel):
 
     }
 
-    def __init__(self, media_file, model_config={}):
+    def __init__(self, model_config={}):
         super(WhisperTimeStamped, self).__init__(model_config=model_config,
                                                  model_name=self.model_name)
         # config
         self.model_type = _load_config('model_type', model_config, self.config_schema)
+        self.segment_type = _load_config('segment_type', model_config, self.config_schema)
         self.device = _load_config('device', model_config, self.config_schema)
         self.download_root = _load_config('download_root', model_config, self.config_schema)
         self.in_memory = _load_config('in_memory', model_config, self.config_schema)
@@ -241,9 +264,15 @@ class WhisperTimeStamped(AbstractModel):
                                                  **self.decode_options
                                                  )
         subs = SSAFile()
-        for segment in results['segments']:
-            for word in segment['words']:
-                event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]))
-                event.plaintext = word["text"].strip()
+        if self.segment_type == 'word':  # word level timestamps
+            for segment in results['segments']:
+                for word in segment['words']:
+                    event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]))
+                    event.plaintext = word["text"].strip()
+                    subs.append(event)
+        else:
+            for segment in results['segments']:
+                event = SSAEvent(start=pysubs2.make_time(s=segment["start"]), end=pysubs2.make_time(s=segment["end"]))
+                event.plaintext = segment["text"].strip()
                 subs.append(event)
         return subs
