@@ -53,7 +53,7 @@ class SubsAI:
     @staticmethod
     def available_models() -> list:
         """
-        Returns the models supported
+        Returns the supported models
 
         :return: list of available models
         """
