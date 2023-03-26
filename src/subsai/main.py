@@ -110,7 +110,7 @@ class SubsAI:
             stt_model = SubsAI.create_model(model, model_config)
         else:
             stt_model = model
-        media_file = pathlib.Path(media_file).absolute()
+        media_file = str(pathlib.Path(media_file).resolve())
         return stt_model.transcribe(media_file)
 
 
