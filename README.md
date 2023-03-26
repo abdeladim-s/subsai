@@ -28,6 +28,10 @@
     * > High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model
       > * Plain C/C++ implementation without dependencies
       > * Runs on the CPU
+  * [x] [guillaumekln/faster-whisper](https://github.com/guillaumekln/faster-whisper)
+    * > **faster-whisper** is a reimplementation of OpenAI's Whisper model using [CTranslate2](https://github.com/OpenNMT/CTranslate2/), which is a fast inference engine for Transformer models.
+      >
+      > This implementation is up to 4 times faster than [openai/whisper](https://github.com/openai/whisper) for the same accuracy while using less memory. The efficiency can be further improved with 8-bit quantization on both CPU and GPU.
   
 * Web UI
   * Fully offline, no third party services 
