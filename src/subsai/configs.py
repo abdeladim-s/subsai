@@ -8,6 +8,7 @@ Configurations file
 from ffsubsync.constants import DEFAULT_MAX_SUBTITLE_SECONDS, DEFAULT_START_SECONDS, DEFAULT_MAX_OFFSET_SECONDS, \
     DEFAULT_APPLY_OFFSET_SECONDS, DEFAULT_FRAME_RATE, DEFAULT_VAD
 
+from subsai.models.faster_whisper_model import FasterWhisperModel
 from subsai.models.whisper_model import WhisperModel
 from subsai.models.whisper_timestamped_model import WhisperTimeStamped
 from subsai.models.whispercpp_model import WhisperCppModel
@@ -35,6 +36,17 @@ AVAILABLE_MODELS = {
                        '* Runs on the CPU\n',
         'url': 'https://github.com/ggerganov/whisper.cpp\nhttps://github.com/abdeladim-s/pywhispercpp',
         'config_schema': WhisperCppModel.config_schema,
+    },
+    'guillaumekln/faster-whisper': {
+        'class': FasterWhisperModel,
+        'description': '**faster-whisper** is a reimplementation of OpenAI\'s Whisper model using '
+                       '[CTranslate2](https://github.com/OpenNMT/CTranslate2/), which is a fast inference engine for '
+                       'Transformer models.\n'
+                       'This implementation is up to 4 times faster than [openai/whisper]( '
+                       'https://github.com/openai/whisper) for the same accuracy while using less memory. The '
+                       'efficiency can be further improved with 8-bit quantization on both CPU and GPU.',
+        'url': 'https://github.com/guillaumekln/faster-whisper',
+        'config_schema': FasterWhisperModel.config_schema,
     }
 }
 
@@ -237,4 +249,3 @@ ADVANCED_TOOLS_CONFIGS = {
     },
 
 }
-
