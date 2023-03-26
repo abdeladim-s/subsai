@@ -10,3 +10,4 @@ pysubs2~=1.6.0
 # pywhispercpp @ git+https://github.com/abdeladim-s/pywhispercpp
 pywhispercpp~=1.0.5
 dl_translate
+faster_whisper
