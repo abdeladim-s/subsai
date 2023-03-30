@@ -46,9 +46,9 @@ def _handle_media_file(media_file_arg: list[str]):
                 for line in lines:
                     if line == '':
                         continue
-                    res.append(pathlib.Path(line).absolute())
+                    res.append(pathlib.Path(line.strip()).resolve())
         else:
-            res.append(pathlib.Path(file).absolute())
+            res.append(pathlib.Path(file).resolve())
     return res
 
 
@@ -103,7 +103,7 @@ def run(media_file_arg: list[str],
                                    target_language=translation_target_lang,
                                    model=tr_model,
                                    translation_configs=translation_configs)
-        print(f"[+] Saving subtitle file: {file_name}")
+        print(f"[+] Subtitles file saved to: {file_name}")
         subs.save(file_name)
     print('DONE!')
 
