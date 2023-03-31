@@ -22,7 +22,7 @@ class FasterWhisperModel(AbstractModel):
     config_schema = {
         # load model config
         'model_size_or_path': {
-            'type': str,
+            'type': list,
             'description': 'Size of the model to use (e.g. "large-v2", "small", "tiny.en", etc.)'
                            'or a path to a converted model directory. When a size is configured, the converted'
                            'model is downloaded from the Hugging Face Hub.',
