@@ -142,11 +142,9 @@ class Tools:
         :return: list of available languages
         """
         if type(model) == str:
-            translation_model = Tools.create_translation_model(model)
-            langs = translation_model.available_languages()
+            langs = Tools.create_translation_model(model).available_languages()
         else:
             langs = model.available_languages()
-        del translation_model
         return langs
 
     @staticmethod
