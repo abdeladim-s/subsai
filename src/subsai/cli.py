@@ -124,7 +124,7 @@ def main():
                              "string)")
     parser.add_argument('-f', '--format', '--subtitles-format', default='srt',
                         help=f"Output subtitles format, available "
-                             f"formats {available_subs_formats()}")
+                             f"formats {available_subs_formats(include_extensions=False)}")
     parser.add_argument('-df', '--destination-folder', default=None,
                         help='The directory where the subtitles will be stored, default to the same folder where '
                              'the media file(s) is stored.')
