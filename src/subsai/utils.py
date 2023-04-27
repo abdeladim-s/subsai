@@ -48,11 +48,20 @@ def available_translation_models() -> list:
     return models
 
 
-def available_subs_formats():
+def available_subs_formats(include_extensions=True):
     """
     Returns available subtitle formats
     from :attr:`pysubs2.FILE_EXTENSION_TO_FORMAT_IDENTIFIER`
 
+    :param include_extensions: include the dot separator in file extensions
+
     :return: list of subtitle formats
     """
-    return list(FILE_EXTENSION_TO_FORMAT_IDENTIFIER.keys())
+
+    extensions = list(FILE_EXTENSION_TO_FORMAT_IDENTIFIER.keys())
+
+    if include_extensions:
+        return extensions
+    else:
+        # remove the '.' separator from extension names
+        return [ext.split('.')[1] for ext in extensions]
