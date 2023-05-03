@@ -7,7 +7,6 @@ ffsubsync~=0.4.24
 whisper-timestamped @ git+https://github.com/linto-ai/whisper-timestamped
 pandas
 pysubs2~=1.6.0
-# pywhispercpp @ git+https://github.com/abdeladim-s/pywhispercpp
-pywhispercpp==1.0.7
+pywhispercpp
 dl_translate
 faster_whisper
