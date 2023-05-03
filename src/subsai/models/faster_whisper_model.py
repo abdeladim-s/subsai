@@ -200,6 +200,25 @@ class FasterWhisperModel(AbstractModel):
             'options': None,
             'default': "\"'.。,，!！?？:：”)]}、"
         },
+        'vad_filter': {
+            'type': bool,
+            'description': 'If True, use the integrated Silero VAD model to filter out parts of the audio without speech.',
+            'options': None,
+            'default': False
+        },
+        'vad_parameters': {
+            'type': dict,
+            'description': 'Parameters for splitting long audios into speech chunks using silero VAD.',
+            'options': None,
+            'default': {
+                'threshold': 0.5,
+                'min_speech_duration_ms': 250,
+                'max_speech_duration_s': float('inf'),
+                'min_silence_duration_ms': 2000,
+                'window_size_samples': 1024,
+                'speech_pad_ms': 400
+            }
+        },
     }
 
     def __init__(self, model_config):
