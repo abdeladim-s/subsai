@@ -20,7 +20,7 @@ from _pywhispercpp import WHISPER_SAMPLING_GREEDY, WHISPER_SAMPLING_BEAM_SEARCH
 
 
 class WhisperCppModel(AbstractModel):
-    model_name = 'whisper.cpp'
+    model_name = 'ggerganov/whisper.cpp'
     config_schema = {
             # load model config
             'model_type': {
