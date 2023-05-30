@@ -32,8 +32,8 @@ class WhisperTimeStamped(AbstractModel):
             'type': list,
             'description': "Whisper_timestamps gives the ability to have word-level timestamps, "
                            "Choose here between sentence-level and word-level",
-            'options': ['Sentence', 'Word'],
-            'default': 'Sentence'
+            'options': ['sentence', 'word'],
+            'default': 'sentence'
         },
         'device': {
             'type': list,
@@ -270,9 +270,12 @@ class WhisperTimeStamped(AbstractModel):
                     event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]))
                     event.plaintext = word["text"].strip()
                     subs.append(event)
-        else:
+        elif self.segment_type == 'sentence':
             for segment in results['segments']:
                 event = SSAEvent(start=pysubs2.make_time(s=segment["start"]), end=pysubs2.make_time(s=segment["end"]))
                 event.plaintext = segment["text"].strip()
                 subs.append(event)
+        else:
+            raise Exception(f'Unknown `segment_type` value, it should be one of the following: '
+                            f' {self.config_schema["segment_type"]["options"]}')
         return subs
