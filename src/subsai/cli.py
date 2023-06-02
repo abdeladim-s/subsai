@@ -6,6 +6,7 @@ SubsAI Command Line Interface (cli)
 """
 import argparse
 import importlib.metadata
+from typing import List
 
 __author__ = "abdeladim-s"
 __contact__ = "https://github.com/abdeladim-s"
@@ -37,7 +38,7 @@ subs_ai = SubsAI()
 tools = Tools()
 
 
-def _handle_media_file(media_file_arg: list[str]):
+def _handle_media_file(media_file_arg: List[str]):
     res = []
     for file in media_file_arg:
         if file.endswith('.txt'):
@@ -60,7 +61,7 @@ def _handle_configs(model_configs_arg: str):
     return json.loads(model_configs_arg)
 
 
-def run(media_file_arg: list[str],
+def run(media_file_arg: List[str],
         model_name,
         model_configs,
         destination_folder,
