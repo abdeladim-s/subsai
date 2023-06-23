@@ -148,14 +148,15 @@ class Tools:
         return langs
 
     @staticmethod
-    def create_translation_model(model_name: str = "m2m100") -> TranslationModel:
+    def create_translation_model(model_name: str = "m2m100", model_family: str = None) -> TranslationModel:
         """
         Creates and returns a translation model instance.
 
         :param model_name: name of the model. To get available models use :func:`available_translation_models`
-        :return:
+        :param model_family: Either "mbart50" or "m2m100". By default, See `dl-translate` docs
+        :return: A translation model instance
         """
-        mt = TranslationModel(model_name)
+        mt = TranslationModel(model_or_path=model_name, model_family=model_family)
         return mt
 
     @staticmethod
@@ -163,6 +164,7 @@ class Tools:
                   source_language: str,
                   target_language: str,
                   model: Union[str, TranslationModel] = "m2m100",
+                  model_family: str = None,
                   translation_configs: dict = {}) -> SSAFile:
         """
         Translates a subtitles `SSAFile` object, what :func:`SubsAI.transcribe` is returning
@@ -172,12 +174,13 @@ class Tools:
         :param target_language: the target language
         :param model: the translation model, either an `str` or the model instance created by
                         :func:`create_translation_model`
+        :param model_family: Either "mbart50" or "m2m100". By default, See `dl-translate` docs
         :param translation_configs: dict of translation configs (see :attr:`configs.ADVANCED_TOOLS_CONFIGS`)
 
         :return: returns an `SSAFile` subtitles translated to the target language
         """
         if type(model) == str:
-            translation_model = Tools.create_translation_model(model)
+            translation_model = Tools.create_translation_model(model_name=model, model_family=model_family)
         else:
             translation_model = model
 
