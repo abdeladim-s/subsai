@@ -9,6 +9,7 @@ from ffsubsync.constants import DEFAULT_MAX_SUBTITLE_SECONDS, DEFAULT_START_SECO
     DEFAULT_APPLY_OFFSET_SECONDS, DEFAULT_FRAME_RATE, DEFAULT_VAD
 
 from subsai.models.faster_whisper_model import FasterWhisperModel
+from subsai.models.whisperX_model import WhisperXModel
 from subsai.models.whisper_model import WhisperModel
 from subsai.models.whisper_timestamped_model import WhisperTimeStamped
 from subsai.models.whispercpp_model import WhisperCppModel
@@ -47,6 +48,12 @@ AVAILABLE_MODELS = {
                        'efficiency can be further improved with 8-bit quantization on both CPU and GPU.',
         'url': 'https://github.com/guillaumekln/faster-whisper',
         'config_schema': FasterWhisperModel.config_schema,
+    },
+    'm-bain/whisperX': {
+        'class': WhisperXModel,
+        'description': """**whisperX** is a fast automatic speech recognition (70x realtime with large-v2) with word-level timestamps and speaker diarization.""",
+        'url': 'https://github.com/m-bain/whisperX',
+        'config_schema': WhisperXModel.config_schema,
     }
 }
 
