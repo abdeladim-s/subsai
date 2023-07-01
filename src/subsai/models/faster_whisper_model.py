@@ -11,6 +11,7 @@ from typing import Tuple
 import pysubs2
 import whisper
 from pysubs2 import SSAFile, SSAEvent
+from tqdm import tqdm
 
 from subsai.models.abstract_model import AbstractModel
 from subsai.utils import _load_config, get_available_devices
@@ -243,18 +244,37 @@ class FasterWhisperModel(AbstractModel):
                                   cpu_threads=self._cpu_threads,
                                   num_workers=self._num_workers)
 
+
+        # to show the progress
+        import logging
+
+        logging.basicConfig()
+        logging.getLogger("faster_whisper").setLevel(logging.DEBUG)
+
     def transcribe(self, media_file) -> str:
         segments, info = self.model.transcribe(media_file, **self.transcribe_configs)
         subs = SSAFile()
-        if self.transcribe_configs['word_timestamps']:  # word level timestamps
-            for segment in segments:
-                for word in segment.words:
-                    event = SSAEvent(start=pysubs2.make_time(s=word.start), end=pysubs2.make_time(s=word.end))
-                    event.plaintext = word.word.strip()
+        total_duration = round(info.duration, 2)  # Same precision as the Whisper timestamps.
+        timestamps = 0.0  # to get the current segments
+        with tqdm(total=total_duration, unit=" audio seconds") as pbar:
+            if self.transcribe_configs['word_timestamps']:  # word level timestamps
+                for segment in segments:
+                    pbar.update(segment.end - timestamps)
+                    timestamps = segment.end
+                    if timestamps < info.duration:
+                        pbar.update(info.duration - timestamps)
+                    for word in segment.words:
+                        event = SSAEvent(start=pysubs2.make_time(s=word.start), end=pysubs2.make_time(s=word.end))
+                        event.plaintext = word.word.strip()
+                        subs.append(event)
+            else:
+                for segment in segments:
+                    pbar.update(segment.end - timestamps)
+                    timestamps = segment.end
+                    if timestamps < info.duration:
+                        pbar.update(info.duration - timestamps)
+                    event = SSAEvent(start=pysubs2.make_time(s=segment.start), end=pysubs2.make_time(s=segment.end))
+                    event.plaintext = segment.text.strip()
                     subs.append(event)
-        else:
-            for segment in segments:
-                event = SSAEvent(start=pysubs2.make_time(s=segment.start), end=pysubs2.make_time(s=segment.end))
-                event.plaintext = segment.text.strip()
-                subs.append(event)
+
         return subs
