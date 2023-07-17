@@ -96,15 +96,17 @@ _Quoted from the official openai/whisper installation_
 ```shell
 pip install git+https://github.com/abdeladim-s/subsai
 ```
-# Usage
-### Web UI
 
-To use the web UI, run the following command on the terminal
+# Usage
+### Web-UI
+
+To use the web-UI, run the following command on the terminal
 ```shell
 subsai-webui
 ```
-
 And a web page will open on your default browser, otherwise navigate to the links provided by the command
+
+You can also run the Web-UI using [Docker](#Docker).
 
 ### CLI
 
@@ -175,6 +177,14 @@ Simple examples can be found in the [examples](https://github.com/abdeladim-s/su
 * [Translation example](https://github.com/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb): translate an already existing subtitles file. <a target="_blank" href="https://colab.research.google.com/github/abdeladim-s/subsai/blob/main/examples/subsai_translation.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
+
+# Docker
+If you only want to use the Web-UI, you can use docker as follows:
+1. Make sure that you have `docker` installed.
+2. Clone and cd to the repository
+3. ```docker compose build```
+4. ```docker compose run -v /path/to/your/media_files/folder:/media_files subsai-webui```
+5. You can access your media files through the mounted `media_files` folder.
 
 # Notes
 * If you have an NVIDIA graphics card, you may need to install [cuda](https://docs.nvidia.com/cuda/#installation-guides) to use the GPU capabilities.

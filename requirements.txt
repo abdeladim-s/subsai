@@ -1,13 +1,13 @@
-torch
+torch==2.0.1
 openai-whisper==20230124
 streamlit~=1.20.0
 streamlit_player~=0.1.5
 streamlit-aggrid~=0.3.4
 ffsubsync~=0.4.24
 whisper-timestamped @ git+https://github.com/linto-ai/whisper-timestamped
-pandas
+pandas==1.5.3
 pysubs2~=1.6.0
 pywhispercpp==1.1.1
-dl_translate
-faster_whisper
+dl_translate==0.2.6
+faster_whisper==0.5.1
 whisperx @ git+https://github.com/m-bain/whisperx.git
