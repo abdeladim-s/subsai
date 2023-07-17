@@ -106,7 +106,7 @@ subsai-webui
 ```
 And a web page will open on your default browser, otherwise navigate to the links provided by the command
 
-You can also run the Web-UI using [Docker](#Docker).
+You can also run the Web-UI using [Docker](#docker).
 
 ### CLI
 
