@@ -7,7 +7,10 @@ Subs AI Web User Interface (webui)
 
 import importlib
 import mimetypes
+import os.path
+import shutil
 import sys
+import tempfile
 from base64 import b64encode
 from pathlib import Path
 
@@ -22,6 +25,7 @@ from subsai import SubsAI, Tools
 from subsai.configs import ADVANCED_TOOLS_CONFIGS
 from subsai.utils import available_subs_formats
 from streamlit.web import cli as stcli
+from tempfile import NamedTemporaryFile
 
 __author__ = "abdeladim-s"
 __contact__ = "https://github.com/abdeladim-s"
@@ -274,7 +278,23 @@ def webui() -> None:
     notification_placeholder = st.empty()
 
     with st.sidebar:
-        file_path = st.text_input('Media file path', help='Absolute path of the media file')
+        with st.expander('Media file', expanded=True):
+            file_mode = st.selectbox("Select file mode", ['Local path', 'Upload'], index=0,
+                                     help='Use `Local Path` if you are on a local machine, or use `Upload` to '
+                                          'upload your files if you are using a remote server')
+            if file_mode == 'Local path':
+                file_path = st.text_input('Media file path', help='Absolute path of the media file')
+            else:
+                uploaded_file = st.file_uploader("Choose a media file")
+                if uploaded_file is not None:
+                    temp_dir = tempfile.TemporaryDirectory()
+                    tmp_dir_path = temp_dir.name
+                    file_path = os.path.join(tmp_dir_path, uploaded_file.name)
+                    file = open(file_path, "wb")
+                    file.write(uploaded_file.getbuffer())
+                else:
+                    file_path = ""
+
         stt_model_name = st.selectbox("Select Model", SubsAI.available_models(), index=0,
                                       help='Select an AI model to use for '
                                            'transcription')
@@ -484,7 +504,7 @@ def webui() -> None:
             subs = st.session_state['transcribed_subs']
             exported_file = media_file.parent / (export_filename + export_format)
             subs.save(exported_file, fps=fps)
-            st.success(f'Exported file at {exported_file}', icon="✅")
+            st.success(f'Exported file to {exported_file}', icon="✅")
             with open(exported_file, 'r') as f:
                 st.download_button('Download', f, file_name=export_filename + export_format)
 
