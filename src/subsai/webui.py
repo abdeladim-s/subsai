@@ -485,6 +485,8 @@ def webui() -> None:
             exported_file = media_file.parent / (export_filename + export_format)
             subs.save(exported_file, fps=fps)
             st.success(f'Exported file at {exported_file}', icon="✅")
+            with open(exported_file, 'r') as f:
+                st.download_button('Download', f, file_name=export_filename + export_format)
 
     st.markdown(footer, unsafe_allow_html=True)
 
