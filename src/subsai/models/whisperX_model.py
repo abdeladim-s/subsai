@@ -6,7 +6,7 @@ WhisperX Model
 
 See [m-bain/whisperX](https://github.com/m-bain/whisperX)
 """
-
+import logging
 from typing import Tuple
 import pysubs2
 import torch
@@ -143,9 +143,14 @@ class WhisperXModel(AbstractModel):
         if self.segment_type == 'word':  # word level timestamps
             for segment in result['segments']:
                 for word in segment['words']:
-                    event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]))
-                    event.plaintext = word["word"].strip()
-                    subs.append(event)
+                    try:
+                        event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]))
+                        event.plaintext = word["word"].strip()
+                        subs.append(event)
+                    except Exception as e:
+                        logging.warning(f"Something wrong with {word}")
+                        logging.warning(e)
+
         elif self.segment_type == 'sentence':
             for segment in result['segments']:
                 event = SSAEvent(start=pysubs2.make_time(s=segment["start"]), end=pysubs2.make_time(s=segment["end"]))
