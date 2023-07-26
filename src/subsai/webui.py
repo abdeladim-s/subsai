@@ -515,7 +515,7 @@ def run():
     if runtime.exists():
         webui()
     else:
-        sys.argv = ["streamlit", "run", __file__, "--theme.base", "dark"]
+        sys.argv = ["streamlit", "run", __file__, "--theme.base", "dark"] + sys.argv
         sys.exit(stcli.main())
 
 
