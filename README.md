@@ -6,13 +6,15 @@
 </p>
 
 <!-- TOC -->
+* [Subs AI](#subs-ai)
 * [Features](#features)
 * [Installation](#installation)
 * [Usage](#usage)
-    * [Web UI](#web-ui)
+    * [Web-UI](#web-ui)
     * [CLI](#cli)
     * [From Python](#from-python)
     * [Examples](#examples)
+* [Docker](#docker)
 * [Notes](#notes)
 * [Contributing](#contributing)
 * [License](#license)
@@ -179,11 +181,11 @@ Simple examples can be found in the [examples](https://github.com/abdeladim-s/su
 </a>
 
 # Docker
-If you only want to use the Web-UI, you can use docker as follows:
+
 1. Make sure that you have `docker` installed.
-2. Clone and cd to the repository
+2. Clone and `cd` to the repository
 3. ```docker compose build```
-4. ```docker compose run -v /path/to/your/media_files/folder:/media_files subsai-webui```
+4. ```docker compose run -p 8501:8501 -v /path/to/your/media_files/folder:/media_files subsai-webui```
 5. You can access your media files through the mounted `media_files` folder.
 
 # Notes
@@ -198,4 +200,3 @@ If you find a bug, have a suggestion or feedback, please open an issue for discu
 
 This project is licensed under the GNU General Licence version 3 or later. You can modify or redistribute it under the conditions
 of these licences (See [LICENSE](./LICENSE) for more information).
-
