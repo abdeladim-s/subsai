@@ -148,6 +148,8 @@ Example of a simple usage
 ```shell
 subsai ./assets/test1.mp4 --model openai/whisper --model-configs '{"model_type": "small"}' --format srt
 ```
+> Note: **For Windows CMD**, You will need to use the following :
+> `subsai ./assets/test1.mp4 --model openai/whisper --model-configs "{\"model_type\": \"small\"}" --format srt`
 
 You can also provide a simple text file for batch processing 
 _(Every line should contain the absolute path to a single media file)_
