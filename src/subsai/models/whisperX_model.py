@@ -18,6 +18,7 @@ from subsai.utils import _load_config, get_available_devices
 import gc
 from pysubs2 import SSAFile, SSAEvent
 
+
 class WhisperXModel(AbstractModel):
     model_name = 'm-bain/whisperX'
     config_schema = {
@@ -103,7 +104,7 @@ class WhisperXModel(AbstractModel):
 
     def __init__(self, model_config):
         super(WhisperXModel, self).__init__(model_config=model_config,
-                                           model_name=self.model_name)
+                                            model_name=self.model_name)
         # config
         self.model_type = _load_config('model_type', model_config, self.config_schema)
         self.device = _load_config('device', model_config, self.config_schema)
@@ -129,7 +130,8 @@ class WhisperXModel(AbstractModel):
         audio = whisperx.load_audio(media_file)
         result = self.model.transcribe(audio, batch_size=self.batch_size)
         model_a, metadata = whisperx.load_align_model(language_code=result["language"], device=self.device)
-        result = whisperx.align(result["segments"], model_a, metadata, audio, self.device, return_char_alignments=self.return_char_alignments)
+        result = whisperx.align(result["segments"], model_a, metadata, audio, self.device,
+                                return_char_alignments=self.return_char_alignments)
         self._clear_gpu()
         del model_a
         if self.speaker_labels:
@@ -140,11 +142,13 @@ class WhisperXModel(AbstractModel):
             del diarize_model
 
         subs = SSAFile()
+
         if self.segment_type == 'word':  # word level timestamps
             for segment in result['segments']:
                 for word in segment['words']:
                     try:
-                        event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]))
+                        event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]),
+                                         name=segment["speaker"] if self.speaker_labels else "")
                         event.plaintext = word["word"].strip()
                         subs.append(event)
                     except Exception as e:
@@ -153,7 +157,8 @@ class WhisperXModel(AbstractModel):
 
         elif self.segment_type == 'sentence':
             for segment in result['segments']:
-                event = SSAEvent(start=pysubs2.make_time(s=segment["start"]), end=pysubs2.make_time(s=segment["end"]))
+                event = SSAEvent(start=pysubs2.make_time(s=segment["start"]), end=pysubs2.make_time(s=segment["end"]),
+                                 name=segment["speaker"] if self.speaker_labels else "")
                 event.plaintext = segment["text"].strip()
                 subs.append(event)
         else:
