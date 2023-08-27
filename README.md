@@ -192,6 +192,7 @@ Simple examples can be found in the [examples](https://github.com/abdeladim-s/su
 
 # Notes
 * If you have an NVIDIA graphics card, you may need to install [cuda](https://docs.nvidia.com/cuda/#installation-guides) to use the GPU capabilities.
+* AMD GPUs compatible with Pytorch should be working as well. [#67](https://github.com/abdeladim-s/subsai/issues/67) 
 * Transcription time is shown on the terminal, keep an eye on it while running the web UI. 
 * If you didn't like Dark mode web UI, you can switch to Light mode from `settings > Theme > Light`.
 
