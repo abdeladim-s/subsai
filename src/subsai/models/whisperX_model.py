@@ -34,8 +34,8 @@ class WhisperXModel(AbstractModel):
         'device': {
             'type': list,
             'description': "The PyTorch device to put the model into",
-            'options': ['cpu', 'cuda'],
-            'default': 'cpu'
+            'options': [None, *get_available_devices()],
+            'default': None
         },
         'compute_type': {
             'type': list,
