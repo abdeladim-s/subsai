@@ -54,6 +54,7 @@
         * [x] [facebook/m2m100_1.2B](https://huggingface.co/facebook/m2m100_1.2B)
         * [x] [facebook/mbart-large-50-many-to-many-mmt](https://huggingface.co/facebook/mbart-large-50-many-to-many-mmt)
     * Auto-sync using [smacke/ffsubsync](https://github.com/smacke/ffsubsync)
+    * Merge subtitles into the video
 * Command Line Interface
   * For simple or batch processing
 * Python package

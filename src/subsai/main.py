@@ -19,8 +19,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 import os
 import pathlib
 import tempfile
-from typing import Union
+from typing import Union, Dict
 
+import ffmpeg
 import pysubs2
 from dl_translate import TranslationModel
 from pysubs2 import SSAFile
@@ -239,11 +240,75 @@ class Tools:
             os.unlink(srtin_file.name)
             srtout_file.close()
             os.unlink(srtout_file.name)
+    @staticmethod
+    def merge_subs_with_video(subs: Dict[str, SSAFile],
+                  media_file: str,
+                  output_filename: str = None,
+                  **kwargs
+                  ) -> str:
+        """
+        Uses ffmpeg to merge subtitles into a video media file.
+        You cna merge multiple subs at the same time providing a dict with (lang,`SSAFile` object) key,value pairs
+        Example:
+        ```python
+            file = '../../assets/video/test1.webm'
+            subs_ai = SubsAI()
+            model = subs_ai.create_model('openai/whisper', {'model_type': 'tiny'})
+            en_subs = subs_ai.transcribe(file, model)
+            ar_subs = pysubs2.load('../../assets/video/test0-ar.srt')
+            Tools.merge_subs_with_video2({'English': subs, "Arabic": subs2}, file)
+        ```
 
+        :param subs: dict with (lang,`SSAFile` object) key,value pairs
+        :param media_file: path of the video media_file
+        :param output_filename: Output file name (without the extension as it will be inferred from the media file)
+
+        :return: Absolute path of the output file
+        """
+        metadata = ffmpeg.probe(media_file, select_streams="v")['streams'][0]
+        assert metadata['codec_type'] == 'video', f'File {media_file} is not a video'
+
+
+        srtin_files = {key: tempfile.NamedTemporaryFile(delete=False) for key in subs}
+        try:
+            in_file = pathlib.Path(media_file)
+            if output_filename is not None:
+                out_file = in_file.parent / f"{output_filename}{in_file.suffix}"
+            else:
+                out_file = in_file.parent / f"{in_file.stem}-subs-merged{in_file.suffix}"
+
+            video = str(in_file.resolve())
+            metadata_subs = {}
+            ffmpeg_subs_inputs = []
+            for i,lang in enumerate(srtin_files):
+                srtin = srtin_files[lang].name + '.srt'
+                subs[lang].save(srtin)
+                ffmpeg_subs_inputs.append(ffmpeg.input(srtin)['s'])
+                metadata_subs[f'metadata:s:s:{i}'] = "title=" + lang
+
+            output_file = str(out_file.resolve())
+            input_ffmpeg = ffmpeg.input(video)
+            input_video = input_ffmpeg['v']
+            input_audio = input_ffmpeg['a']
+            output_ffmpeg = ffmpeg.output(
+                input_video, input_audio, *ffmpeg_subs_inputs, output_file,
+                vcodec='copy', acodec='copy',
+                **metadata_subs
+            )
+            output_ffmpeg = ffmpeg.overwrite_output(output_ffmpeg)
+            ffmpeg.run(output_ffmpeg)
+        finally:
+            for srtin_file in srtin_files.values():
+                srtin_file.close()
+                os.unlink(srtin_file.name)
+        return str(out_file.resolve())
 
 if __name__ == '__main__':
-    file = './assets/test1.mp4'
+    file = '../../assets/video/test1.webm'
     subs_ai = SubsAI()
-    model = subs_ai.create_model('openai/whisper', {'model_type': 'base'})
+    model = subs_ai.create_model('openai/whisper', {'model_type': 'tiny'})
     subs = subs_ai.transcribe(file, model)
-    subs.save('test1.srt')
+    subs.save('../../assets/video/test1.srt')
+    subs2 = pysubs2.load('../../assets/video/test0-ar.srt')
+    Tools.merge_subs_with_video2({'English': subs, "Arabic": subs2}, file)
+    # subs.save('test1.srt')

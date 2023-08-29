@@ -5,7 +5,7 @@
 Test file the main module
 
 """
-
+import pathlib
 from unittest import TestCase
 
 import pysubs2
@@ -51,7 +51,7 @@ class TestSubsAI(TestCase):
 
 class TestTools(TestCase):
     tools = Tools()
-    file = '../assets/video/test1.mp4'
+    file = '../assets/video/test1.webm'
     subs_file = '../assets/video/test1.srt'
     subs = pysubs2.load(subs_file)
 
@@ -65,3 +65,8 @@ class TestTools(TestCase):
         synced_subs = self.tools.auto_sync(self.subs, self.file)
         self.assertIsInstance(synced_subs, SSAFile)
 
+
+    def test_merge_subs_with_video(self):
+        Tools.merge_subs_with_video2({'English': self.subs}, self.file, 'subs-merged')
+        in_file = pathlib.Path(self.file)
+        self.assertTrue((in_file.parent / f"subs-merged{in_file.suffix}").exists())

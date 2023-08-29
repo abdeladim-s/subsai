@@ -489,7 +489,7 @@ def webui() -> None:
 
         event = st_player(_media_file_base64(file_path), **options, height=500, key="player")
 
-    with st.expander('Export'):
+    with st.expander('Export subtitles file'):
         media_file = Path(file_path)
         export_format = st.radio(
             "Format",
@@ -507,6 +507,18 @@ def webui() -> None:
             st.success(f'Exported file to {exported_file}', icon="✅")
             with open(exported_file, 'r') as f:
                 st.download_button('Download', f, file_name=export_filename + export_format)
+
+    with st.expander('Merge subtitles with video'):
+        media_file = Path(file_path)
+        subs_lang = st.text_input('Subtitles language', value='English', key='merged_video_subs_lang')
+        exported_video_filename = st.text_input('Filename', value=f"{media_file.stem}-subs-merged", key='merged_video_out_file')
+        submitted = st.button("Merge", key='merged_video_export_btn')
+        if submitted:
+            subs = st.session_state['transcribed_subs']
+            exported_file_path = tools.merge_subs_with_video({subs_lang: subs}, str(media_file.resolve()), exported_video_filename)
+            st.success(f'Exported file to {exported_file_path}', icon="✅")
+            with open(exported_file_path, 'rb') as f:
+                st.download_button('Download', f, file_name=f"{exported_video_filename}{media_file.suffix}")
 
     st.markdown(footer, unsafe_allow_html=True)
 
