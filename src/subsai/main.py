@@ -278,7 +278,7 @@ class Tools:
                 out_file = in_file.parent / f"{in_file.stem}-subs-merged{in_file.suffix}"
 
             video = str(in_file.resolve())
-            metadata_subs = {}
+            metadata_subs = {'scodec': 'mov_text'} if metadata['codec_name'] == 'h264' else {}
             ffmpeg_subs_inputs = []
             for i,lang in enumerate(srtin_files):
                 srtin = srtin_files[lang].name + '.srt'
@@ -293,6 +293,7 @@ class Tools:
             output_ffmpeg = ffmpeg.output(
                 input_video, input_audio, *ffmpeg_subs_inputs, output_file,
                 vcodec='copy', acodec='copy',
+                # scodec='mov_text',
                 **metadata_subs
             )
             output_ffmpeg = ffmpeg.overwrite_output(output_ffmpeg)
