@@ -205,7 +205,8 @@ class WhisperModel(AbstractModel):
 
     def transcribe(self, media_file) -> str:
         audio = whisper.load_audio(media_file)
-        result = self.model.transcribe(audio, verbose=self.verbose,
+        result = self.model.transcribe(audio,
+                                       verbose=self.verbose,
                                        temperature=self.temperature,
                                        compression_ratio_threshold=self.compression_ratio_threshold,
                                        logprob_threshold=self.logprob_threshold,

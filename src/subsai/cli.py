@@ -70,6 +70,7 @@ def run(media_file_arg: List[str],
         translation_configs,
         translation_source_lang,
         translation_target_lang,
+        output_suffix
         ):
     files = _handle_media_file(media_file_arg)
     model_configs = _handle_configs(model_configs)
@@ -90,9 +91,13 @@ def run(media_file_arg: List[str],
             if not folder.exists():
                 print(f"[+] Creating folder: {folder}")
                 os.makedirs(folder, exist_ok=True)
-            file_name = folder / (file.stem + '.' + subs_format)
         else:
-            file_name = file.parent / (file.stem + '.' + subs_format)
+            folder = file.parent
+        if output_suffix is not None:
+            file_name = folder / (file.stem + '-' + output_suffix + '.' + subs_format)
+        else:
+            file_name = folder / (file.stem + '.' + subs_format)
+
         if translation_model is not None:
             if tr_model is None:
                 print(f"[+] Creating translation model: {translation_model}")
@@ -137,6 +142,7 @@ def main():
     parser.add_argument('-tc', '--translation-configs', default="{}",
                         help="JSON configuration (path to a json file or a direct "
                              "string)")
+    parser.add_argument('-os', '--output-suffix', default=None, help="Name of the subtitles output file, (In batch processing, this will be used as a suffix to the media filename)")
 
     args = parser.parse_args()
 
@@ -148,7 +154,8 @@ def main():
         translation_model=args.translation_model,
         translation_configs=args.translation_configs,
         translation_source_lang=args.translation_source_lang,
-        translation_target_lang=args.translation_target_lang)
+        translation_target_lang=args.translation_target_lang,
+        output_suffix=args.output_suffix)
 
 
 if __name__ == '__main__':
