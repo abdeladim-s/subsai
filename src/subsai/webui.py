@@ -158,8 +158,8 @@ def _media_file_base64(file_path, mime='video/mp4', start_time=0):
             mime = mimetypes.guess_type(file_path)[0]
         except Exception as e:
             print(f'Unrecognized video type!')
-    return [{"type": mime, "src": f"data:{mime};base64,{data}#t={start_time}"}]
 
+    return [{"type": mime, "src": f"data:{mime};base64,{data}#t={start_time}"}]
 
 @st.cache_resource
 def _create_translation_model(model_name: str):
@@ -294,6 +294,8 @@ def webui() -> None:
                     file.write(uploaded_file.getbuffer())
                 else:
                     file_path = ""
+
+            st.session_state['file_path'] = file_path
 
         stt_model_name = st.selectbox("Select Model", SubsAI.available_models(), index=0,
                                       help='Select an AI model to use for '
@@ -487,7 +489,15 @@ def webui() -> None:
                 }}
         }
 
-        event = st_player(_media_file_base64(file_path), **options, height=500, key="player")
+        if 'file_path' in st.session_state and st.session_state['file_path'] != '':
+            if os.path.getsize(file_path) > st.web.server.server.get_max_message_size_bytes():
+                print(f"Media file cannot be previewed: size exceeds the message size limit of {st.web.server.server.get_max_message_size_bytes() / int(1e6):.2f} MB.")
+                st.info(f'Media file cannot be previewed: size exceeds the size limit of {st.web.server.server.get_max_message_size_bytes() / int(1e6):.2f} MB.'
+                        f' But you can try to run the transcription as usual.', icon="🚨")
+                st.info(f' You can increase the limit by running: subsai-webui --server.maxUploadSize Your_desired_limit_in_MB')
+                st.info(f"If it didn't work, please use the command line interface instead.")
+            else:
+                event = st_player(_media_file_base64(st.session_state['file_path']), **options, height=500, key="player")
 
     with st.expander('Export subtitles file'):
         media_file = Path(file_path)
