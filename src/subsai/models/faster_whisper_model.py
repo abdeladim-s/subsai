@@ -277,4 +277,4 @@ class FasterWhisperModel(AbstractModel):
                     event.plaintext = segment.text.strip()
                     subs.append(event)
 
-        return subs
+        return subs, info
