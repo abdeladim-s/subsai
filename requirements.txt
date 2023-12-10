@@ -1,5 +1,5 @@
 torch==2.0.1
-openai-whisper==20230124
+openai-whisper==20231106
 streamlit~=1.20.0
 streamlit_player~=0.1.5
 streamlit-aggrid~=0.3.4
