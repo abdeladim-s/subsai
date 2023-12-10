@@ -4,7 +4,7 @@ streamlit~=1.20.0
 streamlit_player~=0.1.5
 streamlit-aggrid~=0.3.4
 ffsubsync~=0.4.24
-whisper-timestamped @ git+https://github.com/linto-ai/whisper-timestamped@127e8b738756420487210490d09938593244b3dd
+whisper-timestamped @ git+https://github.com/linto-ai/whisper-timestamped
 pandas==1.5.3
 pysubs2~=1.6.0
 pywhispercpp==1.1.1
