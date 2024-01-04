@@ -44,6 +44,7 @@ def available_translation_models() -> list:
         "facebook/m2m100_418M",
         "facebook/m2m100_1.2B",
         "facebook/mbart-large-50-many-to-many-mmt",
+        "facebook/nllb-200-distilled-600M"
     ]
     return models
 
