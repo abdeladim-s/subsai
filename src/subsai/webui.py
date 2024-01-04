@@ -511,12 +511,17 @@ def webui() -> None:
             fps = None
         submitted = st.button("Export")
         if submitted:
-            subs = st.session_state['transcribed_subs']
-            exported_file = media_file.parent / (export_filename + export_format)
-            subs.save(exported_file, fps=fps)
-            st.success(f'Exported file to {exported_file}', icon="✅")
-            with open(exported_file, 'r', encoding='utf-8') as f:
-                st.download_button('Download', f, file_name=export_filename + export_format)
+            try:
+                subs = st.session_state['transcribed_subs']
+                exported_file = media_file.parent / (export_filename + export_format)
+                subs.save(exported_file, fps=fps)
+                st.success(f'Exported file to {exported_file}', icon="✅")
+                with open(exported_file, 'r', encoding='utf-8') as f:
+                    st.download_button('Download', f, file_name=export_filename + export_format)
+            except Exception as e:
+                st.error("Maybe you forgot to run the transcription! Please transcribe a media file first to export its transcription!")
+                st.error("See the terminal for more info!")
+                print(e)
 
     with st.expander('Merge subtitles with video'):
         media_file = Path(file_path)
@@ -524,11 +529,16 @@ def webui() -> None:
         exported_video_filename = st.text_input('Filename', value=f"{media_file.stem}-subs-merged", key='merged_video_out_file')
         submitted = st.button("Merge", key='merged_video_export_btn')
         if submitted:
-            subs = st.session_state['transcribed_subs']
-            exported_file_path = tools.merge_subs_with_video({subs_lang: subs}, str(media_file.resolve()), exported_video_filename)
-            st.success(f'Exported file to {exported_file_path}', icon="✅")
-            with open(exported_file_path, 'rb') as f:
-                st.download_button('Download', f, file_name=f"{exported_video_filename}{media_file.suffix}")
+            try:
+                subs = st.session_state['transcribed_subs']
+                exported_file_path = tools.merge_subs_with_video({subs_lang: subs}, str(media_file.resolve()), exported_video_filename)
+                st.success(f'Exported file to {exported_file_path}', icon="✅")
+                with open(exported_file_path, 'rb') as f:
+                    st.download_button('Download', f, file_name=f"{exported_video_filename}{media_file.suffix}")
+            except Exception as e:
+                st.error("Something went wrong!")
+                st.error("See the terminal for more info!")
+                print(e)
 
     st.markdown(footer, unsafe_allow_html=True)
 
