@@ -50,6 +50,7 @@
   * Integrated tools:
     * Translation using [xhluca/dl-translate](https://github.com/xhluca/dl-translate):
       * Supported models:
+        * [x] [facebook/nllb-200-distilled-600M](https://huggingface.co/facebook/nllb-200-distilled-600M) 
         * [x] [facebook/m2m100_418M](https://huggingface.co/facebook/m2m100_418M)
         * [x] [facebook/m2m100_1.2B](https://huggingface.co/facebook/m2m100_1.2B)
         * [x] [facebook/mbart-large-50-many-to-many-mmt](https://huggingface.co/facebook/mbart-large-50-many-to-many-mmt)
