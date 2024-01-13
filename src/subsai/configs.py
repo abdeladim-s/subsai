@@ -14,6 +14,7 @@ from subsai.models.whisper_model import WhisperModel
 from subsai.models.whisper_timestamped_model import WhisperTimeStamped
 from subsai.models.whispercpp_model import WhisperCppModel
 from subsai.utils import get_available_devices, available_translation_models
+from subsai.models.stable_ts_model import StableTsModel
 
 AVAILABLE_MODELS = {
     'openai/whisper': {
@@ -54,7 +55,13 @@ AVAILABLE_MODELS = {
         'description': """**whisperX** is a fast automatic speech recognition (70x realtime with large-v2) with word-level timestamps and speaker diarization.""",
         'url': 'https://github.com/m-bain/whisperX',
         'config_schema': WhisperXModel.config_schema,
-    }
+    },
+    'jianfch/stable-ts': {
+        'class': StableTsModel,
+        'description': '**Stabilizing Timestamps for Whisper** This library modifies [Whisper](https://github.com/openai/whisper) to produce more reliable timestamps and extends its functionality.',
+        'url': 'https://github.com/jianfch/stable-ts',
+        'config_schema': StableTsModel.config_schema,
+    },
 }
 
 BASIC_TOOLS_CONFIGS = {
