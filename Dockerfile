@@ -20,5 +20,5 @@ COPY ./assets ./assets
 
 RUN pip install .
 
-CMD ["python", "src/subsai/webui.py"]
+CMD ["python", "src/subsai/webui.py", "--server.fileWatcherType", "none", "--browser.gatherUsageStats", "false"]
 
