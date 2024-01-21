@@ -25,7 +25,7 @@ __header__ = f"""
 Subs AI: Subtitles generation tool powered by OpenAI's Whisper and its variants.
 Version: {__version__}               
 ===================================
-"""
+""".encode('utf-8')
 
 import json
 import os
