@@ -81,15 +81,15 @@ def run(media_file_arg: List[str],
     model = subs_ai.create_model(model_name, model_configs)
     tr_model = None
     for file in files:
-        print(f"[+] Processing file: {file}")
+        print(f"[+] Processing file: {file}".encode('utf-8'))
         if not file.exists():
-            print(f"[*] Error: {file} does not exist -> continue")
+            print(f"[*] Error: {file} does not exist -> continue".encode('utf-8'))
             continue
         subs = subs_ai.transcribe(file, model)
         if destination_folder is not None:
             folder = pathlib.Path(destination_folder).absolute()
             if not folder.exists():
-                print(f"[+] Creating folder: {folder}")
+                print(f"[+] Creating folder: {folder}".encode('utf-8'))
                 os.makedirs(folder, exist_ok=True)
         else:
             folder = file.parent
@@ -109,7 +109,7 @@ def run(media_file_arg: List[str],
                                    target_language=translation_target_lang,
                                    model=tr_model,
                                    translation_configs=translation_configs)
-        print(f"[+] Subtitles file saved to: {file_name}")
+        print(f"[+] Subtitles file saved to: {file_name}".encode('utf-8'))
         subs.save(file_name)
     print('DONE!')
 
