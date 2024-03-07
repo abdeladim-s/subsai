@@ -191,8 +191,8 @@ Simple examples can be found in the [examples](https://github.com/abdeladim-s/su
 1. Make sure that you have `docker` installed.
 2. Clone and `cd` to the repository
 3. ```docker compose build```
-4. ```docker compose run -p 8501:8501 -v /path/to/your/media_files/folder:/media_files subsai-webui```
-5. You can access your media files through the mounted `media_files` folder.
+4. ```docker compose run -p 8501:8501 -v /path/to/your/media_files/folder:/media_files subsai-webui # subsai-webui-cpu for cpu only```
+6. You can access your media files through the mounted `media_files` folder.
 
 # Notes
 * If you have an NVIDIA graphics card, you may need to install [cuda](https://docs.nvidia.com/cuda/#installation-guides) to use the GPU capabilities.

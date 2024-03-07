@@ -11,3 +11,8 @@ services:
           devices:
             - driver: nvidia
               capabilities: [ gpu ]
+
+  subsai-webui-cpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
