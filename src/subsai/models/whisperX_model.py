@@ -149,7 +149,7 @@ class WhisperXModel(AbstractModel):
                     try:
                         event = SSAEvent(start=pysubs2.make_time(s=word["start"]), end=pysubs2.make_time(s=word["end"]),
                                          name=segment["speaker"] if self.speaker_labels else "")
-                        event.plaintext = word["word"].strip()
+                        event.plaintext = segment["speaker"] + ": " + word["word"].strip() if self.speaker_labels else word["word"].strip()
                         subs.append(event)
                     except Exception as e:
                         logging.warning(f"Something wrong with {word}")
@@ -159,7 +159,7 @@ class WhisperXModel(AbstractModel):
             for segment in result['segments']:
                 event = SSAEvent(start=pysubs2.make_time(s=segment["start"]), end=pysubs2.make_time(s=segment["end"]),
                                  name=segment["speaker"] if self.speaker_labels else "")
-                event.plaintext = segment["text"].strip()
+                event.plaintext = segment["speaker"] + ": "+ segment["text"].strip() if self.speaker_labels else segment["text"].strip()
                 subs.append(event)
         else:
             raise Exception(f'Unknown `segment_type` value, it should be one of the following: '
