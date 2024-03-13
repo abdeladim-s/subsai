@@ -506,7 +506,7 @@ def webui() -> None:
                 print(f"Media file cannot be previewed: size exceeds the message size limit of {st.web.server.server.get_max_message_size_bytes() / int(1e6):.2f} MB.")
                 st.info(f'Media file cannot be previewed: size exceeds the size limit of {st.web.server.server.get_max_message_size_bytes() / int(1e6):.2f} MB.'
                         f' But you can try to run the transcription as usual.', icon="🚨")
-                st.info(f' You can increase the limit by running: subsai-webui --server.maxUploadSize Your_desired_limit_in_MB')
+                st.info(f' You can increase the limit by running: subsai-webui --server.maxMessageSize Your_desired_size_limit_in_MB')
                 st.info(f"If it didn't work, please use the command line interface instead.")
             else:
                 event = st_player(_media_file_base64(st.session_state['file_path']), **options, height=500, key="player")
