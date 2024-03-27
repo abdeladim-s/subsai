@@ -17,7 +17,7 @@ from subsai import SubsAI, Tools
 class TestSubsAI(TestCase):
     subs_ai = SubsAI()
     model_name = 'openai/whisper'
-    files = ['../assets/video/test1.mp4', '../assets/audio/test1.mp3']
+    files = ['../assets/video/test1.webm', '../assets/audio/test1.mp3']
 
     def test_available_models(self):
         available_models = self.subs_ai.available_models()

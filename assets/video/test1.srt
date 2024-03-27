@@ -1,0 +1,12 @@
+1
+00:00:00,000 --> 00:00:03,160
+The is Artificial Intelligence.
+
+2
+00:00:03,160 --> 00:00:09,680
+We speak of AI when computer systems perform tasks that usually require human intelligence.
+
+3
+00:00:09,680 --> 00:00:15,680
+This includes, for example, recognizing images, making decisions or engaging in dialogue.
+
