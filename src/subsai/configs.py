@@ -65,8 +65,8 @@ AVAILABLE_MODELS = {
     },
     'API/openai/whisper': {
         'class': WhisperAPIModel,
-        'description': 'API variant of the OpenAI whisper model, just requires an api key',
-        'url': 'https://github.com/openai/whisper',
+        'description': 'API for the OpenAI large-v2 Whisper model, requires an API key.',
+        'url': 'https://platform.openai.com/docs/guides/speech-to-text',
         'config_schema': WhisperAPIModel.config_schema,
     },
 }
