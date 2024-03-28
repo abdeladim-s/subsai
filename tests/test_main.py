@@ -45,7 +45,7 @@ class TestSubsAI(TestCase):
         for model in self.subs_ai.available_models():
             model_instance = self.subs_ai.create_model(model)
             for file in self.files:
-                subs = model_instance.transcribe(file, model_instance)
+                subs = model_instance.transcribe(file)
                 self.assertIsInstance(subs, SSAFile, 'transcribe function should return `pysubs2.SSAFile`')
 
 
@@ -67,6 +67,6 @@ class TestTools(TestCase):
 
 
     def test_merge_subs_with_video(self):
-        Tools.merge_subs_with_video2({'English': self.subs}, self.file, 'subs-merged')
+        Tools.merge_subs_with_video({'English': self.subs}, self.file, 'subs-merged')
         in_file = pathlib.Path(self.file)
         self.assertTrue((in_file.parent / f"subs-merged{in_file.suffix}").exists())
