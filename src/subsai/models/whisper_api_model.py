@@ -58,7 +58,7 @@ class WhisperAPIModel(AbstractModel):
                 'type': str,
                 'description': "Your OpenAI API key",
                 'options': None,
-                'default': None
+                'default': os.environ.get('OPENAI_KEY', None)
             },
             'language': {
                 'type': str,
