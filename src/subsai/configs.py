@@ -15,6 +15,7 @@ from subsai.models.whisper_timestamped_model import WhisperTimeStamped
 from subsai.models.whispercpp_model import WhisperCppModel
 from subsai.utils import get_available_devices, available_translation_models
 from subsai.models.stable_ts_model import StableTsModel
+from subsai.models.whisper_api_model import WhisperAPIModel
 
 AVAILABLE_MODELS = {
     'openai/whisper': {
@@ -61,6 +62,12 @@ AVAILABLE_MODELS = {
         'description': '**Stabilizing Timestamps for Whisper** This library modifies [Whisper](https://github.com/openai/whisper) to produce more reliable timestamps and extends its functionality.',
         'url': 'https://github.com/jianfch/stable-ts',
         'config_schema': StableTsModel.config_schema,
+    },
+    'API/openai/whisper': {
+        'class': WhisperAPIModel,
+        'description': 'API for the OpenAI large-v2 Whisper model, requires an API key.',
+        'url': 'https://platform.openai.com/docs/guides/speech-to-text',
+        'config_schema': WhisperAPIModel.config_schema,
     },
 }
 

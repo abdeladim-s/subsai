@@ -43,6 +43,8 @@
       >- 🗣️ VAD preprocessing, reduces hallucination & batching with no WER degradation.
   * [x] :new: [jianfch/stable-ts](https://github.com/jianfch/stable-ts)
     * >**Stabilizing Timestamps for Whisper**: This library modifies [Whisper](https://github.com/openai/whisper) to produce more reliable timestamps and extends its functionality.
+  * [x] [API/openai/whisper](https://platform.openai.com/docs/guides/speech-to-text)
+    * > OpenAI Whisper via their API
 
 * Web UI
   * Fully offline, no third party services 
