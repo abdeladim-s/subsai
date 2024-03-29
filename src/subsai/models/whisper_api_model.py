@@ -24,8 +24,6 @@ def split_filename(filepath):
     filename, ext = os.path.splitext(full_filename)
     return path,filename,ext
 
-path,filename,ext = split_filename('/Users/luka/Desktop/y2mate.is - AGI Inches Closer 5 Key Quotes Altman Huang and The Most Interesting Year -fPzp_sdCf2Y-1080pp-1711573970.mp3')
-
 def convert_video_to_audio_ffmpeg(video_file, output_ext="mp3"):
     # Construct the output file name
     path,filename,ext = split_filename(video_file)
@@ -126,7 +124,7 @@ class WhisperAPIModel(AbstractModel):
 
         for i, (chunk,offset) in enumerate(chunks):
             chunk_path = os.path.join(TMPDIR,f'chunk_{i}.mp3')
-            print('Saving audio chunk {} to {}'.format(i,chunk_path))
+            print('Transcribing audio chunk {}/{}'.format(i,len(chunks)))
             chunk.export(chunk_path, format='mp3')
             audio_file = open(chunk_path, "rb")
 
@@ -139,6 +137,9 @@ class WhisperAPIModel(AbstractModel):
                 file=audio_file,
                 response_format="srt"
             )
+
+            with open(chunk_path+'.srt','w') as f:
+                f.write(result)
 
             # shift subtitles by offset
             result = SSAFile.from_string(result)
