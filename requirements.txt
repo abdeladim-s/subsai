@@ -11,3 +11,4 @@ dl_translate==0.3.0
 faster_whisper
 whisperx @ git+https://github.com/m-bain/whisperx.git
 stable-ts
+openai
