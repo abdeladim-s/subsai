@@ -9,6 +9,7 @@ from ffsubsync.constants import DEFAULT_MAX_SUBTITLE_SECONDS, DEFAULT_START_SECO
     DEFAULT_APPLY_OFFSET_SECONDS, DEFAULT_FRAME_RATE, DEFAULT_VAD
 
 from subsai.models.faster_whisper_model import FasterWhisperModel
+from subsai.models.hugging_face_model import HuggingFaceModel
 from subsai.models.whisperX_model import WhisperXModel
 from subsai.models.whisper_model import WhisperModel
 from subsai.models.whisper_timestamped_model import WhisperTimeStamped
@@ -68,6 +69,13 @@ AVAILABLE_MODELS = {
         'description': 'API for the OpenAI large-v2 Whisper model, requires an API key.',
         'url': 'https://platform.openai.com/docs/guides/speech-to-text',
         'config_schema': WhisperAPIModel.config_schema,
+    },
+    'HuggingFace': {
+        'class': HuggingFaceModel,
+        'description': 'Hugging Face implementation of Whisper. '
+                       'Any speech recognition pretrained model from the Hugging Face hub can be used as well',
+        'url': 'https://huggingface.co/tasks/automatic-speech-recognition',
+        'config_schema': HuggingFaceModel.config_schema,
     },
 }
 
