@@ -44,7 +44,7 @@
 * [x] [jianfch/stable-ts](https://github.com/jianfch/stable-ts)
   * >**Stabilizing Timestamps for Whisper**: This library modifies [Whisper](https://github.com/openai/whisper) to produce more reliable timestamps and extends its functionality.
 * [x] [Hugging Face Transformers](https://huggingface.co/tasks/automatic-speech-recognition)
-  * > Hugging Face implementation of Whisper. Any speech recognition pretrained model from the Hugging Face hub can be used as well.
+  * > Hugging Face implementation of Whisper.  Any speech recognition pretrained model from the Hugging Face hub can be used as well.
 * [x] [API/openai/whisper](https://platform.openai.com/docs/guides/speech-to-text)
   * > OpenAI Whisper via their API
 
