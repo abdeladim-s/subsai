@@ -20,5 +20,7 @@ COPY ./assets ./assets
 
 RUN pip install .
 
+EXPOSE 8501
+
 ENTRYPOINT ["python", "src/subsai/webui.py", "--server.fileWatcherType", "none", "--browser.gatherUsageStats", "false"]
 
