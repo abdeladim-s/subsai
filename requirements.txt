@@ -13,3 +13,4 @@ whisperx @ git+https://github.com/m-bain/whisperx.git
 stable-ts==2.13.3
 openai
 transformers
+numpy<2
