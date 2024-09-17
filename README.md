@@ -194,7 +194,7 @@ Simple examples can be found in the [examples](https://github.com/abdeladim-s/su
 * Make sure that you have `docker` installed.
 * Prebuilt image
   1. ```docker pull absadiki/subsai:main```
-  2. ```docker run -p 8501:8501 -v /path/to/your/media_files/folder:/media_files absadiki/subsai:main```
+  2. ```docker run --gpus=all -p 8501:8501 -v /path/to/your/media_files/folder:/media_files absadiki/subsai:main```
 * Build the image locally 
   1. Clone and `cd` to the repository
   2. ```docker compose build```
