@@ -1,20 +1,19 @@
-name: ci
+name: mkdocs
 on:
   push:
-    branches:
-      - master
-      - main
+  pull_request:
+
 permissions:
   contents: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           key: ${{ github.ref }}
           path: .cache
@@ -22,4 +21,7 @@ jobs:
       - run: pip install mkdocs-material
       - run: pip install mkdocstrings[python]
       - run: pip install black
-      - run: mkdocs gh-deploy --force
+      - run: mkdocs build
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: mkdocs gh-deploy --force
